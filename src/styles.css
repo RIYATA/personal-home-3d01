@@ -1,0 +1,549 @@
+:root {
+  color: #f8fbff;
+  background: #07132c;
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.game-shell {
+  position: relative;
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  overflow: hidden;
+  background: #102e52;
+}
+
+.game-shell canvas {
+  display: block;
+}
+
+.game-shell::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(4, 12, 32, 0.54), transparent 34%),
+    linear-gradient(0deg, rgba(3, 8, 24, 0.38), transparent 34%);
+}
+
+.phase-camp::after {
+  background:
+    linear-gradient(90deg, rgba(2, 5, 18, 0.68), transparent 42%),
+    linear-gradient(0deg, rgba(2, 5, 18, 0.44), transparent 42%);
+}
+
+.game-header {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  left: 1.75rem;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  pointer-events: none;
+}
+
+.game-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+  text-shadow: 0 0.22rem 0.6rem rgba(1, 6, 22, 0.68);
+}
+
+.game-brand p,
+.game-brand strong {
+  display: block;
+  margin: 0;
+}
+
+.game-brand p {
+  color: #f6d86f;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.game-brand strong {
+  margin-top: 0.12rem;
+  font-size: 1rem;
+}
+
+.moon-mark {
+  position: relative;
+  width: 2.7rem;
+  height: 2.7rem;
+  flex: 0 0 auto;
+  border: 0.18rem solid #f6d86f;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 0.55rem rgba(246, 216, 111, 0.42));
+}
+
+.moon-mark::after {
+  position: absolute;
+  top: -0.32rem;
+  left: 0.58rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #173a62;
+  content: "";
+}
+
+.phase-camp .moon-mark::after {
+  background: #03091d;
+}
+
+.profile-nav {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+  color: rgba(243, 249, 255, 0.72);
+  font-size: 0.8rem;
+  font-weight: 750;
+  pointer-events: auto;
+}
+
+.profile-nav a {
+  padding-bottom: 0.32rem;
+  border-bottom: 0.08rem solid transparent;
+}
+
+.profile-nav a:hover,
+.profile-nav a:focus-visible {
+  color: #fff;
+  border-color: #f6d86f;
+  outline: none;
+}
+
+.icon-button {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.reset-button {
+  justify-self: end;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border: 0.08rem solid rgba(255, 255, 255, 0.34);
+  border-radius: 0.35rem;
+  background: rgba(6, 16, 40, 0.52);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 900;
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+}
+
+.reset-button:hover,
+.reset-button:focus-visible {
+  border-color: #f6d86f;
+  outline: none;
+  transform: translateY(-0.08rem);
+}
+
+.scene-copy {
+  position: absolute;
+  bottom: 7.4rem;
+  left: 2rem;
+  z-index: 3;
+  width: min(27rem, calc(100vw - 4rem));
+  text-shadow: 0 0.18rem 0.65rem rgba(1, 5, 20, 0.82);
+  pointer-events: none;
+}
+
+.scene-copy span {
+  color: #f6d86f;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.scene-copy h1 {
+  max-width: 24rem;
+  margin: 0.35rem 0 0;
+  font-size: 2.25rem;
+  line-height: 1.1;
+}
+
+.scene-copy p {
+  max-width: 24rem;
+  margin: 0.65rem 0 0;
+  color: rgba(238, 247, 255, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.journey-progress {
+  width: min(18rem, 100%);
+  height: 0.28rem;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.journey-progress i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #f6d86f;
+  box-shadow: 0 0 0.8rem rgba(246, 216, 111, 0.8);
+  transition: width 220ms ease;
+}
+
+.action-prompt {
+  position: absolute;
+  right: 2rem;
+  bottom: 7.5rem;
+  z-index: 3;
+  min-width: 8.8rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(237, 246, 255, 0.68);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-shadow: 0 0.18rem 0.6rem rgba(1, 6, 22, 0.8);
+  pointer-events: none;
+}
+
+.action-prompt kbd {
+  min-width: 3.8rem;
+  min-height: 2.05rem;
+  display: grid;
+  place-items: center;
+  padding: 0.25rem 0.55rem;
+  border: 0.08rem solid rgba(255, 255, 255, 0.5);
+  border-radius: 0.25rem;
+  background: rgba(5, 14, 37, 0.62);
+  color: #fff;
+  font: inherit;
+  font-weight: 900;
+  backdrop-filter: blur(8px);
+}
+
+.action-prompt.is-ready {
+  color: #fff3b0;
+}
+
+.action-prompt.is-ready kbd {
+  border-color: #f6d86f;
+  background: #f6d86f;
+  color: #17203d;
+  box-shadow: 0 0 1rem rgba(246, 216, 111, 0.48);
+}
+
+.chapter-rail {
+  position: absolute;
+  right: 50%;
+  bottom: 1rem;
+  z-index: 4;
+  width: min(39rem, calc(100vw - 12rem));
+  min-width: 31rem;
+  height: 5rem;
+  transform: translateX(50%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: end;
+  padding: 0 0.55rem;
+  pointer-events: auto;
+}
+
+.chapter-line {
+  position: absolute;
+  top: 1.35rem;
+  right: 10%;
+  left: 10%;
+  height: 0.14rem;
+  background: rgba(214, 235, 250, 0.25);
+  overflow: hidden;
+}
+
+.chapter-line i {
+  display: block;
+  height: 100%;
+  background: #f6d86f;
+  transition: width 260ms ease;
+}
+
+.chapter-button {
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.32rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(231, 242, 250, 0.68);
+  cursor: pointer;
+  text-shadow: 0 0.15rem 0.5rem rgba(1, 6, 22, 0.85);
+}
+
+.chapter-icon {
+  width: 2.65rem;
+  height: 2.65rem;
+  display: grid;
+  place-items: center;
+  border: 0.1rem solid rgba(217, 237, 249, 0.48);
+  border-radius: 0.3rem;
+  background: rgba(5, 15, 39, 0.74);
+  font-size: 0.65rem;
+  font-weight: 900;
+  backdrop-filter: blur(10px);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.chapter-button strong {
+  font-size: 0.72rem;
+}
+
+.chapter-button:hover,
+.chapter-button:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.chapter-button:hover .chapter-icon,
+.chapter-button:focus-visible .chapter-icon {
+  transform: translateY(-0.22rem);
+  border-color: #fff;
+}
+
+.chapter-button.is-complete .chapter-icon {
+  border-color: rgba(246, 216, 111, 0.72);
+  color: #f6d86f;
+}
+
+.chapter-button.is-active {
+  color: #fff3b0;
+}
+
+.chapter-button.is-active .chapter-icon {
+  transform: translateY(-0.48rem) scale(1.16);
+  border-color: #fff3b0;
+  background: #31536d;
+  color: #fff3b0;
+  box-shadow: 0 0 1rem rgba(246, 216, 111, 0.42);
+}
+
+.phase-camp .scene-copy span,
+.phase-camp .game-brand p {
+  color: #ffbd70;
+}
+
+.phase-camp .journey-progress i,
+.phase-camp .chapter-line i {
+  background: #ffbd70;
+}
+
+.phase-camp .chapter-button.is-active .chapter-icon {
+  border-color: #ffd39a;
+  background: #744b3a;
+  color: #ffd39a;
+  box-shadow: 0 0 1rem rgba(255, 165, 83, 0.5);
+}
+
+.mobile-controls {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .game-header {
+    top: 0.9rem;
+    right: 0.9rem;
+    left: 0.9rem;
+    grid-template-columns: 1fr auto;
+  }
+
+  .profile-nav {
+    display: none;
+  }
+
+  .game-brand strong {
+    font-size: 0.86rem;
+  }
+
+  .moon-mark {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .moon-mark::after {
+    left: 0.46rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .scene-copy {
+    bottom: 9rem;
+    left: 1rem;
+    width: 15.5rem;
+  }
+
+  .scene-copy h1 {
+    font-size: 1.5rem;
+  }
+
+  .scene-copy p {
+    display: none;
+  }
+
+  .journey-progress {
+    width: 12rem;
+    margin-top: 0.65rem;
+  }
+
+  .action-prompt {
+    right: 0.9rem;
+    bottom: 9rem;
+    min-width: 0;
+    grid-template-columns: 1fr;
+    justify-items: end;
+    gap: 0.25rem;
+  }
+
+  .action-prompt kbd {
+    min-width: 3.2rem;
+  }
+
+  .chapter-rail {
+    right: 0.55rem;
+    bottom: 0.55rem;
+    left: 0.55rem;
+    width: auto;
+    min-width: 0;
+    height: 4.4rem;
+    transform: none;
+    padding: 0;
+  }
+
+  .chapter-line {
+    top: 1.1rem;
+  }
+
+  .chapter-icon {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
+
+  .chapter-button.is-active .chapter-icon {
+    transform: translateY(-0.28rem) scale(1.1);
+  }
+
+  .chapter-button strong {
+    font-size: 0.58rem;
+  }
+
+  .mobile-controls {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 13rem;
+    z-index: 4;
+    width: 8.5rem;
+    height: 5.8rem;
+    display: grid;
+    grid-template-columns: repeat(3, 2.6rem);
+    grid-template-rows: repeat(2, 2.6rem);
+    gap: 0.3rem;
+    pointer-events: auto;
+  }
+
+  .mobile-controls button {
+    appearance: none;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 0.08rem solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.3rem;
+    background: rgba(5, 14, 37, 0.7);
+    color: #fff;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 900;
+    backdrop-filter: blur(9px);
+    touch-action: none;
+  }
+
+  .mobile-controls button:active {
+    transform: translateY(0.08rem);
+    border-color: #f6d86f;
+    background: rgba(62, 88, 108, 0.86);
+  }
+
+  .control-up {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .control-left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .control-action {
+    grid-column: 2;
+    grid-row: 2;
+    color: #f6d86f !important;
+  }
+
+  .control-right {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .control-down {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 430px) {
+  .scene-copy {
+    bottom: 8.1rem;
+  }
+
+  .action-prompt {
+    bottom: 8.2rem;
+  }
+
+  .mobile-controls {
+    bottom: 12rem;
+  }
+}

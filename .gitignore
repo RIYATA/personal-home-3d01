@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+dist/
+
+# This Blender source exceeds GitHub's 100 MB file limit and is not used by the website.
+blender/little-girl.blend
