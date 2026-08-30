@@ -1,0 +1,3 @@
+[submodule "components/window-tree"]
+	path = components/window-tree
+	url = https://github.com/RIYATA/tree.git

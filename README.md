@@ -16,6 +16,7 @@
 | 山顶缆车 | 乘车互动、越岭动画与镜头跟随 | [`src/App.jsx`](src/App.jsx) | 已整合 |
 | 月光牧场 | 自由移动、寻找小羊与喂草互动 | [`src/App.jsx`](src/App.jsx) | 已整合 |
 | 星火营地 | 篝火、星空与旅程终幕 | [`src/App.jsx`](src/App.jsx) | 已整合 |
+| 窗外四季树 | 窗外树木、季节变化与环境氛围参考 | [组件源码](components/window-tree) · [在线体验](https://riyata.github.io/tree/) | 独立部件 |
 | 3D 模型资产 | 环境、角色、缆车、小羊与营地模型 | [`public/models`](public/models) | 已整合 |
 | 序章与分镜 | 开场单页、图片故事与十二格分镜 | [独立原型仓库](https://github.com/RIYATA/prologue-storyboard) | 独立原型 |
 | 作品与个人信息 | 作品、关于、经历和联系方式 | — | 规划中 |
