@@ -8,6 +8,28 @@
 
 项目基于 React、Three.js、React Three Fiber 和 Drei 开发，使用 Blender 制作并拆分低多边形 GLB 模型，通过 Three.js 状态机驱动场景切换、角色移动、缆车旅程和轻量姿态动画。
 
+## 模块地图
+
+| 模块 | 内容 | 位置 | 状态 |
+| --- | --- | --- | --- |
+| 雪线攀登 | 路线移动、星光节点与山顶检查点 | [`src/App.jsx`](src/App.jsx) | 已整合 |
+| 山顶缆车 | 乘车互动、越岭动画与镜头跟随 | [`src/App.jsx`](src/App.jsx) | 已整合 |
+| 月光牧场 | 自由移动、寻找小羊与喂草互动 | [`src/App.jsx`](src/App.jsx) | 已整合 |
+| 星火营地 | 篝火、星空与旅程终幕 | [`src/App.jsx`](src/App.jsx) | 已整合 |
+| 3D 模型资产 | 环境、角色、缆车、小羊与营地模型 | [`public/models`](public/models) | 已整合 |
+| 序章与分镜 | 开场单页、图片故事与十二格分镜 | [独立原型仓库](https://github.com/RIYATA/prologue-storyboard) | 独立原型 |
+| 作品与个人信息 | 作品、关于、经历和联系方式 | — | 规划中 |
+
+功能模块与版本历史分开管理：模块按功能持续演进，完整版本使用 Git 标签固定，避免复制多份项目文件。
+
+## 版本历史
+
+| 版本 | 内容 | 固定源码 | 在线体验 |
+| --- | --- | --- | --- |
+| `v0.1.0` 初始版本 | 完成雪线攀登、缆车、牧场、营地和基础 3D 角色互动 | [查看 v0.1.0](https://github.com/RIYATA/personal-home-3d01/tree/v0.1.0) | [打开网站](https://riyata.github.io/personal-home-3d01/) |
+
+> Git 标签中的源码不会随后续开发改变；在线网站默认展示 `main` 分支的最新版本。
+
 ## 项目截图
 
 ### 巫师女孩
